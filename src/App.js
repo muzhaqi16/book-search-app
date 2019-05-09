@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Search from './search/Search';
+import ResultsList from './resultsList/ResultsList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+class App extends React.Component{
+  constructor(props) {
+      super(props);
+      this.state = {
+        books:[],
+        searchTerm:"",
+        printType: null,
+        bookType: null
+      };
+    }
+  setSelected(selected) {
+      this.setState({
+        selected
+      });
+  }
+  render(){
+    return <div className="App">
+      <header>
+        <h1>Google Book Search</h1>
       </header>
+      <main>
+        <Search setSelected={selection=>setSelected(selection)} />
+        <ResultsList />
+      </main>
     </div>
-  );
+  }
 }
 
 export default App;
